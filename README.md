@@ -52,10 +52,10 @@ Then build the same way you would on Linux:
 meson setup --buildtype=release build
 ninja -C build
 ```
+### Incoming Flatpak meme bonus preview
 
-### More image previews
-![image preview](preview3.png )
 
-![image preview](preview2.png.png  )
+
+![image](grains_of_sand_text_preview.png)
 
 
