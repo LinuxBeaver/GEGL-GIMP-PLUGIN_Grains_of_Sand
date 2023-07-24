@@ -41,8 +41,6 @@ property_double (lightness, _("Lightness"), 0.0)
    description  (_("Lightness adjustment"))
    value_range  (0.0, 15.0)
 
-
-
 property_color (value, _("Color 1"), "#ffffff")
     description (_("The color to paint over the input"))
 
@@ -92,8 +90,6 @@ property_double (tilesize2, _("Tile size 2"), 1.7)
     ui_meta     ("unit", "pixel-distance")
 
 
-
-
 #else
 
 #define GEGL_OP_META
@@ -105,13 +101,11 @@ property_double (tilesize2, _("Tile size 2"), 1.7)
 static void attach (GeglOperation *operation)
 {
   GeglNode *gegl = operation->node;
-  GeglNode *input, *output, *color, *output2, *spread, *nop, *cubism, *over, *color2, *cubism2, *nop2, *lightness, *atop, *spread2;
+  GeglNode *input, *output, *color, *spread, *cubism, *over, *color2, *cubism2,  *lightness, *spread2;
 
 
   input    = gegl_node_get_input_proxy (gegl, "input");
   output   = gegl_node_get_output_proxy (gegl, "output");
-  output2   = gegl_node_get_output_proxy (gegl, "output");
-
 
 
   color   = gegl_node_new_child (gegl,
@@ -147,55 +141,26 @@ static void attach (GeglOperation *operation)
                                   NULL);
 
 
- 
- 
-
-  nop    = gegl_node_new_child (gegl,
-                                  "operation", "gegl:nop",
-                                  NULL);
-
-  nop2    = gegl_node_new_child (gegl,
-                                  "operation", "gegl:nop",
-                                  NULL);
-
-
   lightness    = gegl_node_new_child (gegl,
                                   "operation", "gegl:hue-chroma",
                                   NULL);
 
 
-
-
-
-
-
- gegl_node_link_many (input, color, spread, cubism, over, lightness, output, NULL);
+gegl_node_link_many (input, color, spread, cubism, over, lightness, output, NULL);
 gegl_node_link_many (input, color2, spread2, cubism2, NULL);
 gegl_node_connect_from (over, "aux", cubism2, "output"); 
  
   gegl_operation_meta_redirect (operation, "value", color, "value");
-
-
   gegl_operation_meta_redirect (operation, "value2", color2, "value");
-
   gegl_operation_meta_redirect (operation, "amount_x", spread, "amount-x");
-
   gegl_operation_meta_redirect (operation, "amount_y", spread, "amount-y");
-
   gegl_operation_meta_redirect (operation, "amount_y2", spread2, "amount-y");
   gegl_operation_meta_redirect (operation, "amount_x2", spread2, "amount-x");
-
   gegl_operation_meta_redirect (operation, "seed", spread, "seed");
   gegl_operation_meta_redirect (operation, "seed2", spread2, "seed");
-
-
   gegl_operation_meta_redirect (operation, "tilesize", cubism, "tile-size");
-
   gegl_operation_meta_redirect (operation, "tilesize2", cubism2, "tile-size");
-
-
   gegl_operation_meta_redirect (operation, "lightness", lightness, "lightness");
-
 
 }
 
@@ -211,10 +176,11 @@ gegl_op_class_init (GeglOpClass *klass)
   gegl_operation_class_set_keys (operation_class,
     "name",        "gegl:sand-text",
     "title",       _("Grains of Sand - Text Styling filter"),
-    "categories",  "Artistic",
     "reference-hash", "33doa01va13x9xn3v25sb2ac",
     "description", _("GEGL styles your text like grains of sand.  "
                      ""),
+    "gimp:menu-path", "<Image>/Filters/Text Styling",
+    "gimp:menu-label", _("Grains of Sand..."),
     NULL);
 }
 
