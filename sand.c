@@ -174,7 +174,7 @@ gegl_op_class_init (GeglOpClass *klass)
   operation_class->attach = attach;
 
   gegl_operation_class_set_keys (operation_class,
-    "name",        "gegl:sand-text",
+    "name",        "lb:sand-text",
     "title",       _("Grains of Sand - Text Styling filter"),
     "reference-hash", "33doa01va13x9xn3v25sb2ac",
     "description", _("GEGL styles your text like grains of sand.  "
