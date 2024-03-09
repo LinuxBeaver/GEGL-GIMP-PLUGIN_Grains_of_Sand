@@ -148,7 +148,7 @@ static void attach (GeglOperation *operation)
 
 gegl_node_link_many (input, color, spread, cubism, over, lightness, output, NULL);
 gegl_node_link_many (input, color2, spread2, cubism2, NULL);
-gegl_node_connect_from (over, "aux", cubism2, "output"); 
+gegl_node_connect (over, "aux", cubism2, "output"); 
  
   gegl_operation_meta_redirect (operation, "value", color, "value");
   gegl_operation_meta_redirect (operation, "value2", color2, "value");
