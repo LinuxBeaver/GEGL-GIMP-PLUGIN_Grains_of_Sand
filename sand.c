@@ -72,13 +72,13 @@ property_color (value2, _("Color 2"), "#ffffff")
 
 property_int    (amount_x2, _("Horizontal spread 2"), 180)
     description (_("Horizontal spread amount"))
-    value_range (100, 512)
+    value_range (10, 512)
     ui_meta     ("unit", "pixel-distance")
     ui_meta     ("axis", "x")
 
 property_int    (amount_y2, _("Vertical spread 2"), 150)
     description (_("Vertical spread amount"))
-    value_range (100, 512)
+    value_range (10, 512)
     ui_meta     ("unit", "pixel-distance")
     ui_meta     ("axis", "y")
 
